@@ -2,24 +2,8 @@
 
 # This script configures the ssh-agent, loading a GitHub deploy key
 #
-# CONFIGURATION
-# 1. Install OpenSSH on your system (or in a Virtual Machine, Docker container, WSL, ...)
-# 2. Generate an RSA private key without a passphrase:
-#    ssh-keygen -b 4096 -t rsa -N "" -C "My deploy key" -f github_deploy_key
-# 3. Go to https://github.com/<username>/<reponame>/settings/keys/new
-#    - Title: a name of your choice
-#    - Key: paste the contents of the github_deploy_key.pub file
-#    - Check "Allow write access"
-# 3. Encrypt the private key
-#    openssl aes-256-cbc -e -in github_deploy_key -pass "pass:<a-password-of-your-choice>" -md sha256 -out github_deploy_key.enc
-# 4. Go to https://travis-ci.org/<username>/<reponame>/settings
-#    In the "Environment Variables" section, add a new variable with:
-#    - Name: DEPLOYKEY_PASSWORD
-#    - Value: <a-password-of-your-choice>
-# 5. Add the github_deploy_key.enc file to your repository.
-#    Define an environment variable named DEPLOYKEY_FILE, containing the relative
-#    path of the github_deploy_key.enc file
-#    If DEPLOYKEY_FILE is not defined, we'll assume .travis/github_deploy_key.enc
+# Required configuration:
+# see https://github.com/mlocati/travisci-github-deploy-key/blob/master/README.md
 #
 # Author: Michele Locati <michele@locati.it>
 # License: MIT
